@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
     <div id="root"></div>
     <script>
-        // Criar um novo elemento <p> via JS</p>
+        // Cria um novo elemento <p> via JS
         let parag = document.createElement('p')
-        parag.textContent ='Este paragrafo foi criado com JavaScript'
+        parag.textContent = 'Este parágrafo foi criado com JavaScript'
 
         let divRoot = document.getElementById('root')
-        //Colocando o novo parágrafo dentro da div "root"
+        // Coloca o novo parágrafo dentro da div "root"
         divRoot.appendChild(parag)
+
+        const novaDiv = document.createElement('div') // Criação
+
+        novaDiv.textContent = 'Div criada com JavaScript'
+        novaDiv.style.border = '3px dotted green'
+        novaDiv.style.backgroundColor = 'limegreen'
+        novaDiv.id = 'minhaDiv'
+
+        divRoot.appendChild(novaDiv)
     </script>
 </body>
 </html>
