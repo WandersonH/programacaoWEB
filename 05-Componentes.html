@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .soma {
+            border-radius: 5px;
+            border: 3px solid black;
+            padding: 5px;
+            margin: 5px;
+        }
+        .right {
+            text-align: right;
+            background-color: lightblue;
+        }
+        .center {
+            text-align: center;
+            background-color: lightyellow;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        /*
+        Componentes em react nada mais são do que funções que utilizam a sintaxe JSX
+        Comeamos as funções correspndentes a componentes com a Inicial Maiuscula para que quando
+        forem chamadas com a sintaxe JSX elas se diferenciem de tags HTMLS Comuns
+
+
+        as Funçoes de componentes recebem um únic parâmetro, do tipo objeto, que são as props. Esse Objeto 
+        pode ou nao estar desestruturado na declaração
+
+        as props podem tanto cosresponder a atributos reais de um elemento HTML quanto ser Informações que 
+         só fazem sentido para o proprio componentes. Nesse caso, Dizemos que são PROPS PERSONALIZADAS
+        */
+
+        // Componente que recebe dois números e exibe a soma deles.
+        // Este componente tem duas props personalizadas, n1 e n2,
+        // mais as props padrão, que são recebidas como argumento
+        // de resto.
+        const Soma = ({n1, n2, ...props}) =>
+            <div className="soma" {...props}>{n1 + n2}</div>
+
+        // Componentes que recebem apenas as props padrão
+        const ParagRight = props => <p className="right" {...props} />
+        const ParagCenter = props => <p className="center" {...props} />
+
+        const container =
+            <>
+                {/* Quando o valor de uma prop não é string, ele deve ser 
+                    passado entre {} */}
+                <Soma id="soma1" title="Resultado de 19 + 57" n1={19} n2={57} nadaver="teste" />
+
+                {/* O "recheio" da tag corresponde à prop "children", que pode
+                    ser passada de duas formas diferentes
+                */}
+                <ParagCenter children="Parágrafo centralizado" />
+                <ParagCenter>Parágrafo centralizado</ParagCenter>
+
+                {/* 
+                    Quando uma tag é "solteira" (isto é, não possui a tag de
+                    fechamento), ela deve terminar OBRIGATORIAMENTE em />
+                */}
+                <ParagRight id="parag1" children="Parágrafo alinhado à direita" />
+            </>
+
+        ReactDOM.render(container, document.getElementById('root'))
+
+    </script>
+</body>
+</html>

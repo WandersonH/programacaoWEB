@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parag1{
+            color: blue;
+            text-align: center;
+        }
+        .parag2{
+            color: red;
+            text-align: center;
+        }
+       
+    </style>
+</head>
+<body>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+     <div id ="root"></div>
+     <script type="text/babel">
+
+        /*
+        Exercicio de fixação N1
+        1) crie dois estilos CSS, um que coloque o texto na cor azul 
+        e outro que coloque o texto em cor vermelha
+
+        2) declare uma função de componentes que receba as seguintes props personalizadas
+        nome, sobrenome, dia , mes e ano. ela deve receber tambem as props padrão
+        
+        3) O componente deve ser composto por 2 paragrafos: no primeiro deve ser aplicada a classe que
+        deixa a cor do texto em azul, e no segundo, a classe que deixa o texto em vermelho
+
+        4) no primeiro paragrafo, deve ser exibido o nome completo, composto pelo nome e pelo sobrenome
+
+        5) no segundo paragrafo, deve ser exibida a data de nascimento composta pelo dia, Mês e ano
+
+        6) fazer comentarios pertinentes no codigo
+        */
+
+        
+        //Função que recebe propriedade
+        //como serão mostrados 2 paragrafos este componentes deve estar emvolto em uma <div> agrupando 
+        //as mesmas
+        //para aplicar a formatação foram criadas as tags parag1 para exibir o texto em vermelho e
+        //parag2 para exibir o texto em azul
+        const Componentes = ({nome, sobrenome, dia, mes, ano, ...props})=> 
+        <div ><p className="parag1">{nome} {sobrenome}</p><p className="parag2">{dia}/{mes}/{ano}</p></div>
+       
+
+    const container = 
+        <>
+        {/* informando os dados para sere exibidos*/}
+        <Componentes nome="Wanderson" sobrenome="Honorio" dia="20" mes="11" ano="1991"/>
+
+
+        </>
+        //Adicionando o elemento na estrutura do documento
+    ReactDOM.render(container, document.getElementById('root'))
+       
+     </script> 
+</body>
+</html>

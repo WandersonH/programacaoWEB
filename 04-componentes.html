@@ -6,38 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-       .msg{
-           border-radius: 4px;
-           border: 2px solid red;
-           background-color: khaki;
-           padding: 10px;
-           text-align: center;
-           font-family: Calibri, arial, sans-serif;
-           margin-bottom: 10px;
-       }
-
-       .greet{
-           background-color: indigo;
-           border-radius: 8px;
-           color: white;
-           box-shadow: 2px 2px 6px rgba(0,0,0,0.25);
-           padding: 12px;
-           text-align: center;
-           font-family: Calibri, arial, sans-serif;
-           margin-bottom: 10px;
-       }
-
-       .warning-title{
-           color: white;
-           background-color: red;
-           text-align: center;
-       }
-
-       .warning-body{
-           color: black;
-           background-color:  yellow;
-           text-align: center;
-       }
+        .msg {
+            border-radius: 4px;
+            border: 2px solid red;
+            background-color: khaki;
+            padding: 10px;
+            text-align: center;
+            font-family: Calibri, Arial, sans-serif;
+            margin-bottom: 10px;
+        }
+        .greet {
+            background-color: indigo;
+            border-radius: 8px;
+            color: white;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+            padding: 12px;
+            text-align: center;
+            font-family: Calibri, Arial, sans-serif;
+            margin-bottom: 10px;
+        }
+        .warning-title {
+            color: white;
+            background-color: red;
+            text-align: center;
+        }
+        .warning-body {
+            color: black;
+            background-color: yellow;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -45,9 +42,60 @@
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-     <div id ="root"></div>
-     <script type="text/babel">
-       
-     </script> 
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        // Função que recebe duas props e retorna um elemento JSX
+        /*
+        function Greeting({msg, name}) {
+            return <div className="greet">{msg}, {name}</div>
+        }
+        */
+        
+        // Arrow function recebendo duas props e retornando um
+        // elemento JSX
+        const Greeting = ({msg, name}) => <div className="greet">{msg}, {name}</div>
+
+        // Forma alternativa de chamada à função de componente
+        const greet1 = Greeting({msg: 'Boa noite', name: 'William Bonner'})
+
+        // Arrow function que recebe um objeto props genérico e 
+        // utiliza todas as propriedades na renderização do componente
+        const Message = props => <div className="msg" {...props} />
+
+        // Componente complexo
+        const Warning = props =>
+            <>
+                <header className="warning-title">AVISO</header>
+                <section className="warning-body">
+                    <article>
+                        <p {...props} />
+                    </article>
+                </section>
+            </>
+
+        /*
+            Há TRÊS formas de se chamar uma função que retorna um componente:
+            1) Criando uma variável e atribuindo o retorno da função a ela
+            2) Chamando diretamente a função dentro do container
+            3) Chamando a função como se fosse uma tag HTML (sintaxe JSX)
+        */
+
+        const container =
+            <> {/* Fragment */}
+                {greet1} 
+                {Greeting({msg: 'Olá', name: 'mundo'})}
+                <Greeting msg="Olá" name="Fulano" id="greet3" />
+                <Message id="msg1" children="Seja bem-vindo!" title="Mensagem" />
+                <Message id="msg2" title="Mensagem">Seja bem-vindo!</Message>
+                <hr />
+                <Warning id="warn1">Não beba o álcool gel</Warning>
+            </>
+
+        ReactDOM.render(container, document.getElementById('root'))
+        
+    </script>
 </body>
 </html>
+
