@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        function Form() {
+
+            // let num1, num2
+            const [num1, setNum1] = React.useState(0)
+            const [num2, setNum2] = React.useState(0)
+
+            function handleChange(event) {
+                switch(event.target.id) {
+                    case 'num1':
+                        setNum1(Number(event.target.value))
+                        break
+                    default:
+                        setNum2(Number(event.target.value))
+                }
+            }
+
+            return (
+                <form>
+                    <label htmlFor="num1">Primeiro número</label>
+                    <input id="num1" type="number" onChange={handleChange} /><br />
+                    <label htmlFor="num2">Segundo número</label>
+                    <input id="num2" type="number" onChange={handleChange} /><br />
+                    <div>Soma = {num1 + num2}</div>
+                </form>
+            )
+        }
+
+        ReactDOM.render(<Form />, document.getElementById('root'))
+    </script>
+</body>
+</html>
